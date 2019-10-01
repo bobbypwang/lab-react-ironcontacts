@@ -26,3 +26,16 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+table {
+  width: 400px;
+  margin: 0 auto;
+}
+
+table tr td:first-child {
+  max-width: 100px;
+}
+
+.button-wrap {
+  margin-bottom: 17px;
+}
