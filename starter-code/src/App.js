@@ -4,6 +4,25 @@ import './App.css';
 
 import contacts from './contacts.json'
 
+function compareNames (a,b) {
+  if ( a.name < b.name ) {
+    return -1;
+  }
+  if (a.name > b.name ) {
+    return 1;
+  }
+  return 0;
+}
+
+function comparePopularity (a,b) {
+  if ( a.popularity < b.popularity ) {
+    return 1;
+  }
+  if (a.popularity > b.popularity) {
+    return -1;
+  }
+  return 0;
+}
 class App extends Component {
 
   state = {
@@ -23,6 +42,7 @@ class App extends Component {
           <td><img style={{width: '100%'}} src={pictureUrl} alt={`Headshot of ${name}`} /></td>
           <td>{name}</td>
           <td>{popularity}</td>
+          <td><button>Delete</button></td>
           </tr>
         )
 
@@ -44,6 +64,18 @@ class App extends Component {
     })
   }
 
+  sortByName = () => {
+    this.setState({
+      newContactList : [...this.state.newContactList].sort(compareNames)
+    })
+  };
+
+  sortByPopularity = () => {
+    this.setState({
+      newContactList : [...this.state.newContactList].sort(comparePopularity)
+    })
+  };
+
   render() {
     return (
       <div className="App">
@@ -54,8 +86,8 @@ class App extends Component {
         <h2>IronContacts</h2>
         <div className="button-wrap">
           <button onClick={this.getRandomContact}>Add Random Contact</button>
-          <button>Sort by name</button>
-          <button>Sort by popularity</button>
+          <button onClick={this.sortByName}>Sort by name</button>
+          <button onClick={this.sortByPopularity}>Sort by popularity</button>
         </div>
         <div className="table-wrap"></div>
         <table>
@@ -64,6 +96,7 @@ class App extends Component {
               <th>Picture</th>
               <th>Name</th>
               <th>Popularity</th>
+              <th>Delete</th>
             </tr>
           </thead>
         <tbody>
