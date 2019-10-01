@@ -42,7 +42,7 @@ class App extends Component {
           <td><img style={{width: '100%'}} src={pictureUrl} alt={`Headshot of ${name}`} /></td>
           <td>{name}</td>
           <td>{popularity}</td>
-          <td><button>Delete</button></td>
+          <td><button onClick={()=>this.deleteCelebrity(i)}>Delete {i}</button></td>
           </tr>
         )
 
@@ -75,6 +75,15 @@ class App extends Component {
       newContactList : [...this.state.newContactList].sort(comparePopularity)
     })
   };
+
+  deleteCelebrity = (i) => {
+    let newContactList = [...this.state.newContactList]
+    newContactList.splice(i,1)
+    console.log(newContactList)
+    this.setState ({
+      newContactList
+    })
+  }
 
   render() {
     return (
